@@ -1,1 +1,47 @@
-# ProjectTeambuild
+# Project Team Build
+  RiFo733
+  ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+
+## Description
+
+Constructed for use of building your team information 
+
+## Table of Contents
+
+* [Installation](#installation)
+
+* [Usage](#usage)
+
+* [license](#license)
+
+* [Contributing](#contributing)
+
+* [Tests](#tests)
+
+* [Questions](#questions)
+
+## Instatllation
+Use following commands to install dependencies:
+
+npm i
+
+## Usage
+Usage for Managers to build their engineers and interns
+
+## license
+    this repo is licensed under MIT license
+
+## Contributing
+No
+
+## Tests
+Used the following command to run tests:
+...
+Npm test
+...
+
+## Questions
+  Github Name: RiFo733
+  E-mail: rick.h.font@gmail.com
+
+  undefined
