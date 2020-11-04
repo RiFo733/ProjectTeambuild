@@ -71,7 +71,7 @@ function appMenu() {
             arrayId.push(answers.managerId)
             createTeam();
         })
-        }
+    }
 
     function createTeam() {
         // inquirer to ask which type of employee you want to create and runs the relevant function
@@ -101,125 +101,130 @@ function appMenu() {
     }
 
 
-            function createIntern() {
-                inquirer.prompt([
-                    {
-                        type: "input",
-                        name: "internName",
-                        message: "What is your intern's name",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid name";
-                        }
-                    },
-                    {
-                        type: "input",
-                        name: "internId",
-                        message: "What is your intern's ID?",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid ID";
-                        }
-                    },
-                    {
-                        type: "input",
-                        name: "internEmail",
-                        message: "What is your intern's email?",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid email";
-                        }
-                    },
-                    {
-                        type: "input",
-                        name: "internSchool",
-                        message: "What is your intern's school?",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid school";
-                        }
+    function createIntern() {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "What is your intern's name",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
                     }
-                ]).then(answers => {
-                    const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
-                    teamMembers.push(intern)
-                    arrayId.push(answers.internId)
-                })
-            }
-
-            function createEngineer() {
-                inquirer.prompt([
-                    {
-                        type: "input",
-                        name: "engineerName",
-                        message: "What is your engineer's name",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid name";
-                        }
-                    },
-                    {
-                        type: "input",
-                        name: "engineerId",
-                        message: "What is your employee's ID?",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid ID";
-                        }
-                    },
-                    {
-                        type: "input",
-                        name: "engineerEmail",
-                        message: "What is your employee's email?",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid email";
-                        }
-                    },
-                    {
-                        type: "input",
-                        name: "engineerGithub",
-                        message: "What is your employee's Github?",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true
-                            }
-                            return "Please enter a valid github";
-                        }
-                    }
-                ]).then(answers => {
-                    const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
-                    teamMembers.push(engineer)
-                    arrayId.push(answers.engineerId)
-                    // run a function here that creates the entire "team" prompting you to create another employee
-                })
-            }
-
-            function buildTeam() {
-                // Create the output directory if the output path doesn't exist
-            fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+                    return "Please enter a valid name";
                 }
-                
-            
+            },
+            {
+                type: "input",
+                name: "internId",
+                message: "What is your intern's ID?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
+                    }
+                    return "Please enter a valid ID";
+                }
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What is your intern's email?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
+                    }
+                    return "Please enter a valid email";
+                }
+            },
+            {
+                type: "input",
+                name: "internSchool",
+                message: "What is your intern's school?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
+                    }
+                    return "Please enter a valid school";
+                }
+            }
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
+            teamMembers.push(intern)
+            arrayId.push(answers.internId)
+            createTeam();
+        });
+    }
 
-      createManager();
+    function createEngineer() {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "engineerName",
+                message: "What is your engineer's name",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
+                    }
+                    return "Please enter a valid name";
+                }
+            },
+            {
+                type: "input",
+                name: "engineerId",
+                message: "What is your employee's ID?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
+                    }
+                    return "Please enter a valid ID";
+                }
+            },
+            {
+                type: "input",
+                name: "engineerEmail",
+                message: "What is your employee's email?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
+                    }
+                    return "Please enter a valid email";
+                }
+            },
+            {
+                type: "input",
+                name: "engineerGithub",
+                message: "What is your employee's Github?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true
+                    }
+                    return "Please enter a valid github";
+                }
+            }
+        ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
+            teamMembers.push(engineer)
+            arrayId.push(answers.engineerId)
+            createTeam();
+            // run a function here that creates the entire "team" prompting you to create another employee
+        });
+    }
+
+    function buildTeam() {
+        // Create the output directory if the output path doesn't exist
+        if (!fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR)
+        }
+        fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+    }
+
+
+
+    createManager();
 
 }
 
-    appMenu();
+appMenu();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
